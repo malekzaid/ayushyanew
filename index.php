@@ -4,7 +4,7 @@ if (!isset($_SESSION['email']) || !isset($_SESSION['role'])) {
     header('Location: login.php');
 }
 if ($_SESSION['role']=='admin') {
-    require("admin.php");
+    require("manage-staff.php");
 }
 if ($_SESSION['role']=='doctor') {
     require("doctorDash.php");

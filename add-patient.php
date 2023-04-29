@@ -3,7 +3,15 @@ if(isset($_POST['submit']))
 {
     require("connection.php");
     extract($_POST);
-
+    if($gender == "Male") {
+        $gender = 'M';
+    }
+    else if ($gender == "Female") {
+        $gender = 'F';
+    }
+    else {
+        $gender = 'O';
+    }
     $query="insert into patient(name,email,city,phone,gender,dob,bloodgroup) values('$name','$email','$city','$contact','$gender','$dob','$blood' )";
     $result = $conn->query($query);
     if($result){

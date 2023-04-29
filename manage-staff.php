@@ -2,7 +2,7 @@
 <html>
 
 <?php 
-    session_start();
+    // session_start();
     if (!isset($_SESSION['email']) || !isset($_SESSION['role']) || $_SESSION['role']!='admin') {
         header('Location: login.php');
     }
@@ -192,7 +192,7 @@
                                             echo "<td>" . $row['email'] . "</td>";
                                             echo "<td>" . $row['phone'] . "</td>";
                                             echo "<td><button type='button' id='{$row['id']}' class='btn btn-default btn btn-primary mt-3 mb-0 ] btnupd'><span class='ti-pencil' onclick=></span> Edit</button>";
-                                            echo "<button type='button' class='btn btn-danger ml-3 mt-3 mb-0 btndel'><span class='ti-trash'></span> Delete</button></td>";
+                                            echo "<button type='button' class='btn btn-danger ml-3 mt-3 mb-0 btndel'><a href='delete-staff.php?id={$row['id']}'><span class='ti-trash'></span> Delete</a></button></td>";
                                             echo "</tr>";
 
                                             $c++;

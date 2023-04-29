@@ -174,7 +174,7 @@ require ("head.php");
 										<tr>
 											<td><?=$row['id']?></td>
 											<td><?=$row['name']?></td>
-											<td><?=$row['status']?></td>
+											<td><?=$row['status']==1?'Counsulting':'Completed'?></td>
 										</tr>		
 										<?php
 											}
@@ -230,8 +230,8 @@ require ("head.php");
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="DOB"> Birth Date* </label>
-							<input type="date" name="dob" class="form-control" name="dob" id="DOB" required>
+							<label for="DOB"> Birth Date </label>
+							<input type="date" name="dob" class="form-control" name="dob" id="DOB" >
 						</div>
 						<input type="button" class="btn btn-lorvens btnnext proclinic-bg"  value="Next">
 				</div>
