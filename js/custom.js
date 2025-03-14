@@ -52,12 +52,40 @@ $(".btnupd").on('click', function () {
 $(".btnnew").on('click', function () {
     $("#newPatient").show();
 });
+// $(".view").on('click', function () {
+//     $("#viewDetail1").modal('show');
+//     window.location.href = index.php;
+// });
 $(".btnnext").on('click', function () {
     $("#newPatient").hide();
     $("#newPatient2").show();
 });
 $(".btnexist").on('click', function () {
     $("#exiPatient").show();
+});
+$(".view").on('click',function () {
+    $.ajax({
+        method: "POST",
+        url: "get-patient.php",
+        dataType: "json",
+        data: { "data": this.id },
+        success: function (data) {
+            $("#previous-appointment-modal").modal('show');
+            $("#prev_appoint_id").text(data.ap_id);
+            $("#uphone").val(data.phone);
+            $("#complaint").text(data.complaint);
+            $("#advice").text(data.advice);
+            $("#prev_appoint_date").text(data.date);
+            $("#patient_name").text(data.name);
+            $("#findings").text(data.doc_finding);
+            $("#bloodpressure").append(data["parameter"]["bp"]);
+            $("#pheight").append(data["parameter"]["height"]);
+            $("#pweight").append(data["parameter"]["weight"]);
+        },
+        error: function () {
+            window.alert("Failed");
+        }
+    });
 });
 $("#prev_desc_modal").on('click', function () {
     $("#previous-appointment-modal").hide();
@@ -89,6 +117,11 @@ function close1() {
     $("#complaint").empty();
     $("#findings").empty();
     $("#advice").empty(); 
+    $("#viewDetail").empty();
+}
+
+function closeDetail(){
+    window.location.href = "index.php";
 }
 
 // custom.js
