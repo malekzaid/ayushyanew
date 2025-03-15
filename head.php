@@ -17,6 +17,14 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link href="css/main.css" rel="stylesheet" media="all">
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- jQuery UI (for Datepicker) -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+
     <script src="js/modernizr.min.js"></script>
 </head>
 

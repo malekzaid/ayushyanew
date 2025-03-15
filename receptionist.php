@@ -276,7 +276,7 @@ require ("head.php");
 				<div class="modal-body">
 					<form method="POST" action="exipatient.php">
 						<div class="form-group">
-							<label for="id"> Case ID* </label>
+							<label for="id"> Patient ID* </label>
 							<input type="text" name="id" class="form-control" id="id" placeholder="Case ID" required>
 						</div>
 						<div class="form-group">
