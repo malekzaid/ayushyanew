@@ -42,8 +42,6 @@
             $stmt3->bind_param("i",$id);
             $stmt3->execute();
 
-            
-
             $query2 = "delete from appointments where p_id = ?";
             $stmt2 = $conn->prepare($query2);
             $stmt2->bind_param("i", $id);

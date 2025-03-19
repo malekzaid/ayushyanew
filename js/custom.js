@@ -67,7 +67,7 @@ $(".btnupdpatient").on("click", function () {
     },
   });
 });
-  
+
 $(".btnnew").on("click", function () {
   $("#newPatient").show();
 });
@@ -82,6 +82,9 @@ $(".btnnext").on("click", function () {
 $(".btnexist").on("click", function () {
   $("#exiPatient").show();
 });
+$(".prev_desc_modal").on("click", function () {
+  window.href.location = "index.php";
+})
 $(".view").on("click", function () {
   $.ajax({
     method: "POST",
@@ -155,6 +158,8 @@ $(document).ready(function () {
     success: function (data) {
       // Iterate over each appointment and add a row to the table
       $.each(data, function (index, appointment) {
+
+        console.log(appointment.id);
         var row =
           "<tr>" +
           "<td>" +
@@ -175,7 +180,7 @@ $(document).ready(function () {
           '">Call In</a></button>' +
           '<button class="ml-1 btn-danger btn-edit p-1 border border-dark rounded" data-id="' +
           appointment.id +
-          '"><a href="delete-patient.php?id=' +
+          '"><a href="delete-appointment.php?id=' +
           appointment.id +
           '">Delete</a></button>' +
           // '<button class="btn-delete" data-id="' + appointment.ID + '">Delete</button>' +
@@ -221,7 +226,6 @@ function show_prev_visit(ap_id) {
     },
     success: function (data) {
       data = JSON.parse(data);
-      console.log(data);
       $("#prev_appoint_date").append(data["date"]);
       $("#patient_name").append(data["patient_name"]);
       $("#doctor_name").append(data["doctor_name"]);

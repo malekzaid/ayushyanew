@@ -166,8 +166,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `email`, `phone`, `password`, `role`, `created_at`, `updated_at`) VALUES
 (1, 'Zaid', 'zaid@gmail.com', '9898987878', '81dc9bdb52d04dc20036dbd8313ed055', 'admin', '2023-04-01 15:06:58', '2023-04-01 15:06:58'),
-(3, 'Doctor X', 'dr@mbbs.co', '9898776656', '827ccb0eea8a706c4c34a16891f84e7b', 'doctor', '2023-04-01 16:22:37', '2023-04-02 11:43:45'),
-(4, 'Receptionist', 'aa@gmail.com', '9876543211', 'e10adc3949ba59abbe56e057f20f883e', 'receptionist', '2023-04-01 16:25:51', '2023-04-01 16:25:51');
+(3, 'Doctor X', 'dr@mbbs.co', '9898776656', '81dc9bdb52d04dc20036dbd8313ed055', 'doctor', '2023-04-01 16:22:37', '2023-04-02 11:43:45'),
+(4, 'Receptionist', 'aa@gmail.com', '9876543211', '81dc9bdb52d04dc20036dbd8313ed055', 'receptionist', '2023-04-01 16:25:51', '2023-04-01 16:25:51');
 
 --
 -- Indexes for dumped tables

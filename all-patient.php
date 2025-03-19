@@ -140,7 +140,7 @@ require ("head.php");
 		<!-- /Page Content -->
 	</div>
 	
-	<!-- modal new patient -->
+	<!-- modal upadate patient -->
 	<div class="modal proclinic-modal-lg" id="updatePatient" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog modal-lorvens">
 			<div class="modal-content proclinic-box-shadow2">
@@ -187,7 +187,7 @@ require ("head.php");
 							<label for="BG"> Blood Group </label>
 							<input type="text" class="form-control" id="BG" name="blood" placeholder="Blood Group">
 						</div>
-						<input type="Submit" class="btn btn-lorvens proclinic-bg" name="submit" value="Create Case">
+						<input type="Submit" class="btn btn-lorvens proclinic-bg" name="submit" value="Update Patient">
 				</div>
 			</div>
 		</div>
