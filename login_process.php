@@ -4,7 +4,7 @@ if (isset($_POST['Submit'])) {
     require('connection.php');
     extract($_POST);
 
-    $sql = "select name,password,role from user where email='$email'";
+    $sql = "select id,name,password,role from user where email='$email'";
     $result = $conn->query($sql);
     if ($result->num_rows == 0) {
         header("Location: login.php?error=Email not found");
@@ -13,10 +13,12 @@ if (isset($_POST['Submit'])) {
         $row = $result->fetch_assoc();
 
         if (md5($pass) == $row['password']) {
+            $_SESSION['doc_id'] = $row['id'];
             $_SESSION['email'] = $email;
             $_SESSION['role'] = $row['role'];
             $_SESSION['name'] = $row['name'];
             header("Location: index.php");
+            exit();
         }
         else {
             header("Location: login.php?error=Invalid Password");
@@ -24,7 +26,7 @@ if (isset($_POST['Submit'])) {
     }
 }
 else {
-    header('Loaction: login.php');
+    header('Location: login.php');
 }
 
 ?>

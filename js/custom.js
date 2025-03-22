@@ -153,7 +153,7 @@ $(document).ready(function () {
   // Fetch appointment data using AJAX when the page loads
   $.ajax({
     url: "fetch-appointments.php",
-    type: "GET",
+    type: "POST",
     dataType: "json",
     success: function (data) {
       // Iterate over each appointment and add a row to the table

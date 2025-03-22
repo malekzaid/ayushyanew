@@ -10,11 +10,5 @@
             "targets": 'no-sort',
             "orderable": false,
         }]
-    });
-    // $('.table1').DataTable({
-    //     "order": [],
-    //     "columnDefs": [{
-    //         scrollY: true,
-    //     }]
-    // });  
+    }); 
 })(jQuery);

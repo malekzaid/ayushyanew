@@ -1,28 +1,18 @@
 <!DOCTYPE html>
 <html>
 
-
 <?php
 require('connection.php');
 if (substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1) == "doctorDash.php") {
 	header("Location: index.php");
 }
 require("head.php");
+$doc_id = $_SESSION['doc_id'];
 ?>
 
 <body>
-	<!-- Pre Loader -->
-	<!-- <div class="loading">
-		<div class="spinner">
-			<div class="double-bounce1"></div>
-			<div class="double-bounce2"></div>
-		</div>
-	</div> -->
-	<!--/Pre Loader -->
-
 	<nav class="navbar navbar-default">
 		<div class="container-fluid nav d-flex justify-content-between">
-			<!-- <ul class="" > -->
 			<div>
 				<li class="nav-item">
 					<div class="responsive-logo text-dark bg-dark">
@@ -45,91 +35,11 @@ require("head.php");
 					</div>
 				</li>
 			</div>
-			<!-- </ul> -->
-
 		</div>
 	</nav>
 	<div class="wrapper">
-		<!-- Sidebar -->
-		<?php
-		// include_once ("doctor-nav.php");
-		?>
-		<!-- /Sidebar -->
-		<!-- Page Content -->
 		<div id="content">
-			<!-- Top Navigation -->
-			<?php
-			// include_once ("top-nav.php");
-			?>
-			<!-- /Top Navigation -->
-			<!-- Breadcrumb -->
-			<!-- Page Title -->
-			<!-- <div class="row no-margin-padding">
-				<div class="col-md-6">
-					<h3 class="block-title">Quick Statistics</h3>
-				</div>
-				<div class="col-md-6">
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item">
-							<a href="index.html">
-								<span class="ti-home"></span>
-							</a>
-						</li>
-						<li class="breadcrumb-item active">Dashboard</li>
-					</ol>
-				</div>
-			</div> -->
-			<!-- /Page Title -->
-
-			<!-- /Breadcrumb -->
-			<!-- Main Content -->
 			<div class="container-fluid home">
-				<!-- <div class="row"> -->
-				<!-- Widget Item -->
-				<!-- <div class="col-md-4">
-						<div class="widget-area proclinic-box-shadow color-red">
-							<div class="widget-left">
-								<span class="ti-user"></span>
-							</div>
-							<div class="widget-right">
-								<h4 class="wiget-title">Patients</h4>
-								<span class="numeric color-red">348</span>
-								<p class="inc-dec mb-0"><span class="ti-angle-up"></span> +20% Increased</p>
-							</div>
-						</div>
-					</div> -->
-				<!-- /Widget Item -->
-				<!-- Widget Item -->
-				<!-- <div class="col-md-4">
-						<div class="widget-area proclinic-box-shadow color-green">
-							<div class="widget-left">
-								<span class="ti-bar-chart"></span>
-							</div>
-							<div class="widget-right">
-								<h4 class="wiget-title">Appointments</h4>
-								<span class="numeric color-green">1585</span>
-								<p class="inc-dec mb-0"><span class="ti-angle-down"></span> -15% Decreased</p>
-							</div>
-						</div>
-					</div> -->
-				<!-- /Widget Item -->
-				<!-- Widget Item -->
-				<!-- <div class="col-md-4">
-						<div class="widget-area proclinic-box-shadow color-yellow">
-							<div class="widget-left">
-								<span class="ti-money"></span>
-							</div>
-							<div class="widget-right">
-								<h4 class="wiget-title">Total Revenue</h4>
-								<span class="numeric color-yellow">$7300</span>
-								<p class="inc-dec mb-0"><span class="ti-angle-up"></span> +10% Increased</p>
-							</div>
-						</div>
-					</div> -->
-				<!-- /Widget Item -->
-				<!-- </div> -->
-
-
 				<div class="row">
 					<!-- Widget Item -->
 					<div class="col-md-6">
@@ -141,11 +51,9 @@ require("head.php");
 										<tr>
 											<th id="sr-no-th">ID</th>
 											<th id="patient-name-th">Patient Name</th>
-											<!-- <th>Doctor</th> -->
 											<th id="patient-complaint-th">Complaint</th>
 											<th id="patient-status">Status</th>
 											<th id="action-th">Actions</th>
-											<!-- <th>Status</th> -->
 										</tr>
 									</thead>
 									<tbody id="appointment-table-body">
@@ -155,7 +63,6 @@ require("head.php");
 							</div>
 						</div>
 					</div>
-					<!-- /Widget Item -->
 					<div class="col-md-6">
 						<div class="widget-area-2 proclinic-box-shadow">
 							<h3 class="widget-title">Previous Appointments</h3>
@@ -165,17 +72,15 @@ require("head.php");
 										<tr>
 											<th id="sr-no-th">ID</th>
 											<th id="Prev-patient-name-th">Patient Name</th>
-											<!-- <th>Doctor</th> -->
 											<th id="Prev-patient-complaint-th">Complaint</th>
 											<th id="Prev-patient-status">Status</th>
 											<th id="Prev-action-th">Actions</th>
-											<!-- <th>Status</th> -->
 										</tr>
 									</thead>
 									<tbody id="appointment-table-body2">
 										<?php
-										$query = "SELECT p.name,a.id as aid, tk.id, tk.status, a.complaint FROM `token` as tk left join appointments as a on tk.ap_id=a.id LEFT join patient as p on a.p_id=p.id where tk.status!=0 order by tk.id desc";
-										$result = $conn->query($query);
+										$query = "SELECT p.name,a.id as aid, tk.id, tk.status, a.complaint FROM `token` as tk left join appointments as a on tk.ap_id=a.id LEFT join patient as p on a.p_id=p.id where tk.status!=0 and a.doc_id = " . $doc_id . " order by tk.id desc";
+										$result = $conn->query($query); 
 										while ($row = $result->fetch_assoc()) {
 											?>
 											<tr>
@@ -193,7 +98,7 @@ require("head.php");
 												</td>
 												<td>
 													<?php
-													if ($row['status'] == 1) {
+													if ($row['status'] == 'pending') {
 														?><button type="button" class="examine btn btn-success" id="<?= $row['aid'] ?>"><a
 																href="in-patient.php?id=<?= $row['aid'] ?>"> Add
 																Examination</a></button>
@@ -216,9 +121,7 @@ require("head.php");
 				</div>
 			</div>
 		</div>
-		<!-- /Main Content -->
 	</div>
-	<!-- /Page Content -->
 	</div>
 	
 	<div class="modal proclinic-modal-lg" id="previous-appointment-modal" tabindex="-1" role="dialog" aria-hidden="true">

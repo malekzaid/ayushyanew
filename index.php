@@ -2,14 +2,17 @@
 session_start();
 if (!isset($_SESSION['email']) || !isset($_SESSION['role'])) {
     header('Location: login.php');
+    exit();
 }
-if ($_SESSION['role']=='admin') {
+
+if ($_SESSION['role'] == 'admin') {
     require("manage-staff.php");
-}
-if ($_SESSION['role']=='doctor') {
+} elseif ($_SESSION['role'] == 'doctor') {
     require("doctorDash.php");
-}
-if ($_SESSION['role']=='receptionist') {
+} elseif ($_SESSION['role'] == 'receptionist') {
     require("receptionist.php");
+} else {
+    header('Location: login.php');
+    exit();
 }
 ?>

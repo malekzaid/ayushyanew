@@ -1,10 +1,10 @@
 <?php
 
 include("connection.php");
-
+session_start();
+$doc_id = $_SESSION['doc_id'];
 // Define a query to fetch appointment data from the appointment table
-$query = "SELECT a.id as id,t.id as tid, p.name as name, p.gender as gender, a.complaint as complaint FROM token t join appointments a on a.id=t.ap_id join patient p on p.id=a.p_id and t.status = 0";
-
+$query = "SELECT a.id as id,t.id as tid, p.name as name, p.gender as gender, a.complaint as complaint FROM token t join appointments a on a.id=t.ap_id join patient p on p.id=a.p_id and t.status = 0 where a.doc_id = " . $doc_id;
 // Execute the query and store the results in a variable
 $result = $conn->query($query);
 

@@ -25,15 +25,13 @@
 
         $conn->begin_transaction();
 
-        try{
-            
+        try{ 
             $query4 = "delete from token 
                 where ap_id in (select id from appointments 
                 where p_id in (select id from patient where id = ?))";
             $stmt4 = $conn->prepare($query4);
             $stmt4->bind_param("i",$id);
             $stmt4->execute();
-            
 
             $query3 = "delete from examine 
                 where ap_id in (select id from appointments 
