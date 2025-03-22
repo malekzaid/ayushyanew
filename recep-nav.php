@@ -13,14 +13,14 @@
                     <a href="index.php">Add Patient</a>
                 </li>
                 <li>
-                    <a href="index.php">All Patients</a>
+                    <a href="all-patient.php">All Patients</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="index.php">Patient Details</a>
                 </li>
                 <li>
                     <a href="index.php">Edit Patient</a>
-                </li>
+                </li> -->
             </ul>
         </li>
         <li>
